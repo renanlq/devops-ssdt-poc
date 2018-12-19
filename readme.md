@@ -1,4 +1,4 @@
-#POC - SQL Server Data Tools
+# POC - SQL Server Data Tools (pt-br)
 
 ## Sumário
 * [Propósito](#proposito)
