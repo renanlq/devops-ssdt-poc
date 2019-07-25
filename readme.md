@@ -12,38 +12,38 @@
 * [Contribuição](#contribuicao)
 
 ## Propósito
-Propósito deste projeto é realizar testes usando da ferramenta SSDT para a realização de sincronismo entre bases, mediante atividades da equipe de BI. Atividades e dúvidas que serão atacadas nesta prova de conceito são:
-- [x] Definir ambientes de dev, inicio e fim de deploys<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-_R - Criados bancos ssdt_0X, porêm o desenvolvimento acontede offline (local) em máquina do desenvolvedor._
+Propósito deste projeto é realizar testes usando da ferramenta SSDT para a realização de sincronismo entre bases, mediante atividade da equipe de BI. Atividades e dúvidas que serão atacadas nesta prova de conceito são:
+- [X] Definir ambientes de dev, inicio e fim de deploys<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+_R - Criados bancos ssdt_0X, porém, o desenvolvimento acontece offline (local) na máquina do desenvolvedor._
 
-- [ ] É necessária adição da criação de schema?<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-_R - A definir._<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- [X] É necessária adição da criação de schema?<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+_R - Configurado em propriedades no projeto do Visual Studio._<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 _**TODO:** Averiguar se configuração (Project Settings > General > Default schema) supre necessidade de informar schema._
 
-- [x] Criação/alteração de estutura (tables, columns)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- [X] Criação/alteração de estrutura (tables, columns)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 _R - Executada integração VSTS com nome de banco não existente, banco, tabelas e procedimentos criados a partir do nome configurado na tarefa de release do VSTS. Para banco já existente, apenas tabelas e procedimentos foram adicionados._
 
-- [x] Input de dados (insert)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- [X] Input de dados (insert)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 _R - Podem ser incluídos scripts de pré e post deploy no projeto de Data Base, dessa forma podem ser executados scripts antes ou depois da migração das estruturas da base em questão._
 
-- [X] Alteração de estutura/input de dados (insert - ex. domínios)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- [X] Alteração de estrutura/input de dados (insert - ex. domínios)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 _R - Foi possível a alteração da estrutura de uma tabela mesmo com erro no script de post deployment, dessa forma ainda precisamos avaliar a possibilidade de rollback no próprio passo de CD._
 
-- [X] Criação/alteração de programaticas (view, proc e func)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-_R - Alteração de programáticas se dá da mesma forma da estrutura de tabelas, CI/CD não valida se procedure, por exemplo, não possui todos campos de tabela previamente alterada._
+- [X] Criação/alteração de programáticas (view, proc e func)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+_R - Alteração de programáticas se dá da mesma forma da estrutura de tabelas, CI/CD não valida se procedure, por exemplo, não possui todos os campos de tabela previamente alterada._
 
 - [ ] Criação/alteração de índices (tabelas populadas)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-_R - Realizei um teste simples criando um indice clusterizado, a build apresentou erro uma vez que não se pode ter mais de um por tabela, existe validação em ponto de build._<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+_R - Realizei um teste simples criando um índice clusterizado, a build apresentou erro uma vez que não se pode ter mais de um por tabela, existe validação em ponto de build._<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 _**TODO**: verificar mais necessidades._
 
 - [X] Dentro/fora de projeto web (trigger no VSTS)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 _R - É algo a ser avaliado em cada situação, ex. uma aplicação não deve possuir scripts que possam estar contidos em outra aplicação._<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 - [X] Importar para projeto Banco de Dados já existente<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-_R - Importanção foi realizada sem problemas após permissões adicionadas ao usuário de teste._
+_R - Importação foi realizada sem problemas após permissões adicionadas ao usuário de teste._
 
 - [X] Possível utilização do Visual Studio Code para desenvolvimento de banco?<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-_R - Sim, uma vez que as alterações a serem promovidas são aquelas que estão sendo enviadas para o repositório Git. Extensão [MSSQL](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) para VSCode auxilia nas atividades realizando conexões com bases (MSSQL, Azure ...), auxílio a escrita de T-SQL com intellisense, entre outras features_
+_R - Sim, uma vez que as alterações a serem promovidas são aquelas que estão sendo enviadas para o repositório Git. Extensão [MSSQL](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) para VSCode auxilia nas atividades realizando conexões com bases (MSSQL, Azure ...), auxílio a escrita de T-SQL com intellisense, entre outras features._
 
 ## Dependências
 * Pacotes/frameworks: 
@@ -60,12 +60,12 @@ _R - Sim, uma vez que as alterações a serem promovidas são aquelas que estão
 Será realizado via **Azure DevOps**, em [Build e Release](https://companhia.azure.dev/projeto/_build)
 
 ## Resultados
-1. Resultados iniciais demonstram que estando bem alinhado entre as células de BI as reponsabilidades entre as bases, é possível a manutenção de projetos de banco de dados a partir de Projeto Data Base do Visual Studio utilizando da extensão SSDT (Sql Server Data Tools).
+1. Resultados iniciais demonstram que estando bem alinhado entre as células de BI as responsabilidades entre as bases, é possível a manutenção de projetos de banco de dados a partir de Projeto Data Base do Visual Studio utilizando da extensão SSDT (Sql Server Data Tools).
 2. Controle de versionamento utilizando [Git](https://git-scm.com/) garante identificação de problemas de conflito entre versões e evita sobrescrita de alterações por parte de colaboradores/fornecedores, o que se torna uma ferramenta essencial na gestão de nossas bases e evita aquele temido ".bkp" em diretórios espalhados em computadores e servidores da organização.
-3. Processos de CI/CD tem suas particularidades com relações às configurações nas VMs dentro do Azure (VNET e WinRM). Este mesmo processo auxilia os times com feedback imediato a cada nova versão da base, o que ajuda na identicação e resolução de forma mais ágil.<br />
+3. Processos de CI/CD tem suas particularidades com relações às configurações nas VMs dentro do Azure (VNET e WinRM). Este mesmo processo auxilia os times com feedback imediato a cada nova versão da base, o que ajuda na identificação e resolução de forma mais ágil.<br />
 
 ## Considerações
-SSDT realiza a manutenção baseada no estado entre projeto de banco de dados (offline - Visual Studio) e banco de destino (realizado via CD no VSTS), resultado gera o script de alteração (.DACPAC) para que o banco de destino esteja de acordo com o do projeto, dessa forma ajuda na manutenção de bases mantendo elas sincronizadas e não necessitade intervenção manual e necessidade de banco para desenvolvimento, podendo o desenvolvedor criar uma base local para auxiliar suas tarefas.
+SSDT realiza a manutenção baseada no estado entre projeto de banco de dados (offline - Visual Studio) e banco de destino (realizado via CD no VSTS), resultado gera o script de alteração (.DACPAC) para que o banco de destino esteja de acordo com o do projeto, dessa forma ajuda na manutenção de bases mantendo elas sincronizadas e não necessidade de intervenção manual e dependência de banco provisionado para desenvolvimento, podendo o desenvolvedor criar uma base local para auxiliar suas tarefas.
 
 ## Tutoriais e apresentações
 1. [SQL Server Data Tools Team Blog](https://blogs.msdn.microsoft.com/ssdt/2016/04/06/sqldb-cicd-intro/) (MSDN)
