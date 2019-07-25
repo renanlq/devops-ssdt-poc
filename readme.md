@@ -32,7 +32,7 @@ _R - Foi possível a alteração da estrutura de uma tabela mesmo com erro no sc
 - [X] Criação/alteração de programáticas (view, proc e func)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 _R - Alteração de programáticas se dá da mesma forma da estrutura de tabelas, CI/CD não valida se procedure, por exemplo, não possui todos os campos de tabela previamente alterada._
 
-- [ ] Criação/alteração de índices (tabelas populadas)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- [X] Criação/alteração de índices (tabelas populadas)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 _R - Realizei um teste simples criando um índice clusterizado, a build apresentou erro uma vez que não se pode ter mais de um por tabela, existe validação em ponto de build._<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 _**TODO**: verificar mais necessidades._
 
